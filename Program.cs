@@ -1,7 +1,4 @@
-// Etapa 4 - descuentos 
-
-using System.ComponentModel.Design;
-using System.Text;
+// Etapa 6 - ticket
 
 const string NombreComercio = "KIOSCO EL RECREO";
 
@@ -11,12 +8,13 @@ Console.Write("Nombre del cajero: ");
 string? cajero = Console.ReadLine();
 
 Console.WriteLine($"Bienvenida, {cajero}. Caja abierta.");
-
+string separador = "";
 decimal total = 0;
 decimal subtotal = 0;
 int cantidadProductos = 0;
 string opcion;
 decimal descuento = 0;
+decimal recargo = 0;
 const decimal descuentomayor = 0.1m;
 const decimal descuentoefectivo = 0.1m;
 const decimal descuentomenor = 0.05m;
@@ -83,7 +81,8 @@ do
         case "2":
             break;
         case "3":
-            total = total + (total * recargocredito);
+            total += total * recargocredito;
+            recargo += recargocredito;
             break;
         default:
             Console.WriteLine("Opción inválida.");
@@ -92,10 +91,20 @@ do
 }
 while (opcion!="1" && opcion!="2" && opcion!="3");
 Console.WriteLine();
-
+for (int i = 0; i < 30; i++)
+{
+    separador += "-";
+}
+Console.WriteLine(separador);
+Console.WriteLine($"       {NombreComercio}");
+Console.WriteLine(separador);
+Console.WriteLine($"Cajero: {cajero}");
 Console.WriteLine($"Productos: {cantidadProductos}");
 Console.WriteLine($"Subtotal: ${subtotal}");
 Console.WriteLine($"Descuento aplicado: ${subtotal*descuento}");
+Console.WriteLine($"Recargo aplicado: ${subtotal*(1-descuento)*recargo}");
+Console.WriteLine(separador);
 Console.WriteLine($"Total: ${total}");
+Console.WriteLine(separador);
 
 Console.ReadLine();
